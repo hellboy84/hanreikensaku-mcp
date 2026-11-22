@@ -14,7 +14,7 @@ export const SERVER_VERSION = '0.1.0';
 export const DEFAULT_MAX_CHARS = 12_000;
 export const MAX_MAX_CHARS = 40_000;
 
-const INSTRUCTIONS = `裁判所ウェブサイトの「裁判例検索」（https://www.courts.go.jp/hanrei/search1/index.html）を検索・取得するサーバーです。
+const INSTRUCTIONS = `裁判所ウェブサイトの「裁判例検索」 https://www.courts.go.jp/hanrei/search1/index.html を検索・取得するサーバーです。
 使い方：search_cases で検索 → get_case でメタデータ（判示事項・裁判要旨など）→ get_full_text で本文。
 注意：
 - このサイトには全ての裁判例が載っているわけではありません。「見つからない」は「存在しない」を意味しません。
@@ -124,7 +124,7 @@ export function registerTools(server: McpServer, service: HanreiService): void {
           returned: result.items.length,
           next_offset: result.nextOffset,
           search_url: result.url,
-          detail_url: 'https://www.courts.go.jp/hanrei/{id}/detail{N}/index.html（get_case が正確なURLを返す）',
+          detail_url: 'https://www.courts.go.jp/hanrei/{id}/detail{N}/index.html (N は区分で決まる。get_case が正確なURLを返す)',
           ...(result.total === 0
             ? { note: '該当なし。このサイトに全ての裁判例が載っているわけではありません。語や区分を変えて試してください。' }
             : {}),
