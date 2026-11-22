@@ -1,0 +1,40 @@
+{
+  "name": "hanreikensaku-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "裁判所ウェブサイトの「裁判例検索」を検索・取得するMCPサーバー",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellboy84/hanreikensaku-mcp.git"
+  },
+  "bin": {
+    "hanreikensaku-mcp": "dist/local.js"
+  },
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:live": "LIVE=1 vitest run tests/live.test.ts",
+    "start": "node dist/local.js",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "node-html-parser": "9.0.7",
+    "unpdf": "1.9.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "7.0.2",
+    "vitest": "5.1.1"
+  }
+}
