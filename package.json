@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "description": "裁判所ウェブサイトの「裁判例検索」を検索・取得するMCPサーバー",
+  "license": "MIT",
+  "author": "S.HASHIMOTO",
   "type": "module",
   "repository": {
     "type": "git",

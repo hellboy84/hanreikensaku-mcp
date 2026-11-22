@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>裁判例検索 | 裁判所</title>
+</head>
+<body>
+<!--
+  テスト用の抜粋です。裁判所ウェブサイトのページから、解析に必要な部分だけを抜き出しています。
+  ページの全体ではありません。元のページ：https://www.courts.go.jp/hanrei/search1/index.html
+-->
+<form method="GET" name="hanrei-search">
+<select             class="form-control"
+            name="filter[jikenCode]"
+            id="search1-jikenCode-3"
+            title="事件番号 - 符号の選択"
+            aria-label="事件番号 - 符号の選択"
+          >
+            <option value="">選択</option>
+            
+              
+	          <option value="1" >
+                (あ)
+              </option>
+              
+            
+              
+	          <option value="2" >
+                (う)
+              </option>
+              
+            
+              
+	          <option value="3" >
+                (お)
+              </option>
+              
+            
+              
+	          <option value="4" >
+                (き)
+              </option>
+              
+            
+              
+	          <option value="5" >
+                (く)
+              </option>
+              
+            
+              
+	          <option value="6" >
+                (け)
+              </option>
+              
+            
+              
+	          <option value="7" >
+                (さ)
+              </option>
+              
+            
+              
+	          <option value="8" >
+                (し)
+              </option>
+              
+            
+              
+	          <option value="9" >
+                (す)
+              </option>
+              
+            
+              
+	          <option value="10" >
+                (せ)
+              </option>
+              
+            
+              
+	          <option value="11" >
+                (そ)
+              </option>
+              
+            
+              
+	          <option value="12" >
+                (た)
+              </option>
+              
+            
+              
+	          <option value="13" >
+                (つ)
+              </option>
+              
+            
+              
+	          <option value="14" >
+                (て)
+              </option>
+              
+            
+              
+	          <option value="15" >
+                (ね)
+              </option>
+              
+            
+              
+	          <option value="16" >
+                (の)
+              </option>
+              
+            
+              
+	          <option value="17" >
+                (は)
+              </option>
+              
+            
+              
+	          <option value="18" >
+                (ひ)
+              </option>
+              
+            
+              
+	          <option value="19" >
+                (へ)
+              </option>
+              
+            
+              
+	          <option value="20" >
+                (ま)
+              </option>
+              
+            
+              
+	          <option value="21" >
+                (み)
+              </option>
+              
+            
+              
+	          <option value="22" >
+                (む)
+              </option>
+              
+            
+              
+	          <option value="23" >
+                (め)
+              </option>
+              
+            
+              
+	          <option value="24" >
+                (も)
+              </option>
+              
+            
+              
+	          <option value="25" >
+                (や)
+              </option>
+              
+            
+              
+	          <option value="26" >
+                (ゆ)
+              </option>
+              
+            
+              
+	          <option value="27" >
+                (る)
+              </option>
+              
+            
+              
+	          <option value="28" >
+                (れ)
+              </option>
+              
+            
+              
+	          <option value="29" >
+                (ろ)
+              </option>
+              
+            
+              
+	          <option value="30" >
+                (わ)
+              </option>
+              
+            
+              
+	          <option value="31" >
+                (を)
+              </option>
+              
+            
+              
+	          <option value="32" >
+                (を)新
+              </option>
+              
+            
+              
+	          <option value="33" >
+                (ア)
+              </option>
+              
+            
+              
+	          <option value="34" >
+                (ウ)
+              </option>
+              
+            
+              
+	          <option value="35" >
+                (オ)
+              </option>
+              
+            
+              
+	          <option value="36" >
+                (カ)
+              </option>
+              
+            
+              
+	          <option value="37" >
+                (ク)
+              </option>
+              
+            
+              
+	          <option value="38" >
+                (サ)
+              </option>
+              
+            
+              
+	          <option value="39" >
+                (ソ)
+              </option>
+              
+            
+              
+	          <option value="40" >
+                (タ)
+              </option>
+              
+            
+              
+	          <option value="41" >
+                (ツ)
+              </option>
+              
+            
+              
+	          <option value="42" >
+                (ツテ)
+              </option>
+              
+            
+              
+	          <option value="43" >
+                (テ)
+              </option>
+              
+            
+              
+	          <option value="44" >
+                (ナ)
+              </option>
+              
+            
+              
+	          <option value="45" >
+                (ニ)
+              </option>
+              
+            
+              
+	          <option value="46" >
+                (ネ)
+              </option>
+              
+            
+              
+	          <option value="47" >
+                (ネオ)
+              </option>
+              
+            
+              
+	          <option value="48" >
+                (ネ受)
+              </option>
+              
+            
+              
+	          <option value="49" >
+                (ハ)
+              </option>
+              
+            
+              
+	          <option value="50" >
+                (ヒ)
+              </option>
+              
+            
+              
+	          <option value="51" >
+                (ヘ)
+              </option>
+              
+            
+              
+	          <option value="52" >
+                (ホ)
+              </option>
+              
+            
+              
+	          <option value="53" >
+                (マ)
+              </option>
+              
+            
+              
+	          <option value="54" >
+                (ミ)
+              </option>
+              
+            
+              
+	          <option value="55" >
+                (ム)
+              </option>
+              
+            
+              
+	          <option value="56" >
+                (モ)
+              </option>
+              
+            
+              
+	          <option value="57" >
+                (モ甲)
+              </option>
+              
+            
+              
+	          <option value="58" >
+                (ヤ)
+              </option>
+              
+            
+              
+	          <option value="59" >
+                (ヨ)
+              </option>
+              
+            
+              
+	          <option value="60" >
+                (ラ)
+              </option>
+              
+            
+              
+	          <option value="61" >
+                (ラク)
+              </option>
+              
+            
+              
+	          <option value="62" >
+                (ラ許)
+              </option>
+              
+            
+              
+	          <option value="63" >
+                (レ)
+              </option>
+              
+            
+              
+	          <option value="64" >
+                (ワ)
+              </option>
+              
+            
+              
+	          <option value="65" >
+                (ヲ)
+              </option>
+              
+            
+              
+	          <option value="66" >
+                (医に)
+              </option>
+              
+            
+              
+	          <option value="67" >
+                (医へ)
+              </option>
+              
+            
+              
+	          <option value="68" >
+                (医ほ)
+              </option>
+              
+            
+              
+	          <option value="69" >
+                (医ろ)
+              </option>
+              
+            
+              
+	          <option value="70" >
+                (家ホ)
+              </option>
+              
+            
+              
+	          <option value="71" >
+                (許)
+              </option>
+              
+            
+              
+	          <option value="72" >
+                (抗)
+              </option>
+              
+            
+              
+	          <option value="73" >
+                (控)
+              </option>
+              
+            
+              
+	          <option value="74" >
+                (控訴)
+              </option>
+              
+            
+              
+	          <option value="75" >
+                (行)
+              </option>
+              
+            
+              
+	          <option value="76" >
+                (行ウ)
+              </option>
+              
+            
+              
+	          <option value="77" >
+                (行オ)
+              </option>
+              
+            
+              
+	          <option value="78" >
+                (行ク)
+              </option>
+              
+            
+              
+	          <option value="79" >
+                (行ケ)
+              </option>
+              
+            
+              
+	          <option value="80" >
+                (行コ)
+              </option>
+              
+            
+              
+	          <option value="81" >
+                (行サ)
+              </option>
+              
+            
+              
+	          <option value="82" >
+                (行ス)
+              </option>
+              
+            
+              
+	          <option value="83" >
+                (行セ)
+              </option>
+              
+            
+              
+	          <option value="84" >
+                (行ソ)
+              </option>
+              
+            
+              
+	          <option value="85" >
+                (行タ)
+              </option>
+              
+            
+              
+	          <option value="86" >
+                (行ツ)
+              </option>
+              
+            
+              
+	          <option value="87" >
+                (行テ)
+              </option>
+              
+            
+              
+	          <option value="88" >
+                (行ト)
+              </option>
+              
+            
+              
+	          <option value="89" >
+                (行ナ)
+              </option>
+              
+            
+              
+	          <option value="90" >
+                (行ニ)
+              </option>
+              
+            
+              
+	          <option value="91" >
+                (行ヒ)
+              </option>
+              
+            
+              
+	          <option value="92" >
+                (行フ)
+              </option>
+              
+            
+              
+	          <option value="93" >
+                (手ワ)
+              </option>
+              
+            
+              
+	          <option value="94" >
+                (受)
+              </option>
+              
+            
+              
+	          <option value="95" >
+                (収ほ)
+              </option>
+              
+            
+              
+	          <option value="96" >
+                (少イ)
+              </option>
+              
+            
+              
+	          <option value="97" >
+                (少エ)
+              </option>
+              
+            
+              
+	          <option value="98" >
+                (少コ)
+              </option>
+              
+            
+              
+	          <option value="99" >
+                (上)
+              </option>
+              
+            
+              
+	          <option value="100" >
+                (上告)
+              </option>
+              
+            
+              
+	          <option value="101" >
+                (新)
+              </option>
+              
+            
+              
+	          <option value="102" >
+                (新を)
+              </option>
+              
+            
+              
+	          <option value="103" >
+                (人)
+              </option>
+              
+            
+              
+	          <option value="104" >
+                (人ナ)
+              </option>
+              
+            
+              
+	          <option value="105" >
+                (選)
+              </option>
+              
+            
+              
+	          <option value="106" >
+                (秩ち)
+              </option>
+              
+            
+              
+	          <option value="107" >
+                (秩ほ)
+              </option>
+              
+            
+              
+	          <option value="108" >
+                (日)
+              </option>
+              
+            
+              
+	          <option value="109" >
+                (分)
+              </option>
+              
+            
+              
+	          <option value="110" >
+                (分ク)
+              </option>
+              
+            
+              
+	          <option value="111" >
+                刑(わ)
+              </option>
+              
+            
+              
+	          <option value="112" >
+                合(わ)
+              </option>
+              
+            
+              
+	          <option value="113" >
+                新(あ)
+              </option>
+              
+            
+              
+	          <option value="114" >
+                新(そ)
+              </option>
+              
+            
+              
+	          <option value="115" >
+                新(つ)
+              </option>
+              
+            
+              
+	          <option value="116" >
+                新(ね)
+              </option>
+              
+            
+              
+	          <option value="117" >
+                新(れ)
+              </option>
+              
+            
+              
+	          <option value="118" >
+                特(わ)
+              </option>
+              
+            
+              
+	          <option value="120" >
+                (家ロ)
+              </option>
+              
+            
+          </select>
+</form>
+</body>
+</html>

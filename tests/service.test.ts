@@ -12,7 +12,7 @@ import { cmapLoader, fixtureBytes, fixtureText } from './helpers.js';
 class FakeSite implements HttpClient {
   readonly requests: string[] = [];
   private readonly routes: Array<[RegExp, () => string | Uint8Array]> = [
-    [/\/hanrei\/search1\/index\.html$/, () => fixtureText('search-none.html')],
+    [/\/hanrei\/search1\/index\.html$/, () => fixtureText('search-form.html')],
     [/\/hanrei\/search1\/index\.html\?.*query1=/, () => fixtureText('search-all-keyword.html')],
     [/\/hanrei\/search1\/index\.html\?/, () => fixtureText('search-none.html')],
     [/\/hanrei\/97313\/detail2\//, () => fixtureText('detail-97313-2.html')],
