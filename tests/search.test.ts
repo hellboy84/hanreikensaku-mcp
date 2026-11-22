@@ -35,7 +35,7 @@ describe('parseCaseNumber', () => {
 });
 
 describe('parseJikenCodes / findJikenCode', () => {
-  const codes = parseJikenCodes(fixtureText('search-none.html'));
+  const codes = parseJikenCodes(fixtureText('search-form.html'));
 
   it('検索フォームから事件符号の選択肢を取り出す', () => {
     expect(codes.length).toBeGreaterThan(100);
@@ -210,9 +210,11 @@ describe('parseSearchResults', () => {
     expect(() => parseSearchResults('<html><body>Service Unavailable</body></html>', `${SEARCH1}?x=1`)).toThrow(
       /読み取れませんでした/,
     );
-    // 「該当する裁判例がありませんでした」という文は説明文の中にもあるので、それだけでは0件とみなさない
-    const formOnly = fixtureText('search-none.html').replace(/<p[^>]*id="searched"[\s\S]*?<\/p>/, '');
-    expect(formOnly).toContain('該当する裁判例がありませんでした');
-    expect(() => parseSearchResults(formOnly, `${SEARCH1}?x=1`)).toThrow(/読み取れませんでした/);
+    // 検索フォームだけのページ（検索が実行されていない）
+    expect(() => parseSearchResults(fixtureText('search-form.html'), `${SEARCH1}?x=1`)).toThrow(/読み取れませんでした/);
+    // 「該当する裁判例がありませんでした」という文は、サイトの説明文の中にもある。結果の欄にない限り0件とみなさない
+    const helpOnly =
+      '<html><body><form name="hanrei-search"></form><p>「該当する裁判例がありませんでした。」と表示された場合には、その判決等は掲載されていないことになります。</p></body></html>';
+    expect(() => parseSearchResults(helpOnly, `${SEARCH1}?x=1`)).toThrow(/読み取れませんでした/);
   });
 });
