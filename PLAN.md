@@ -4,7 +4,7 @@
 >
 > 内容は書いた時点（2026年11月）のものです。ほかのサービスや料金についての記述は当時調べた範囲のもので、現在は変わっている可能性があります。
 
-裁判所ウェブサイトの「裁判例検索」（https://www.courts.go.jp/hanrei/search1/index.html）を、Claudeから検索・取得できるようにするMCPサーバー。
+裁判所ウェブサイトの「裁判例検索」(https://www.courts.go.jp/hanrei/search1/index.html) を、Claudeから検索・取得できるようにするMCPサーバー。
 
 ## 進め方
 
