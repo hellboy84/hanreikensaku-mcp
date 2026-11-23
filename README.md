@@ -29,10 +29,60 @@ AIアシスタントには、たとえば次のように頼めます。
 ### 必要なもの
 
 - [Node.js](https://nodejs.org/) 22 以上（`node --version` で確認できます）
-- [Git](https://git-scm.com/)
+- [Git](https://git-scm.com/)（`git --version` で確認できます）
 - MCPに対応したAIアシスタント（Claudeデスクトップ版、Claude Code など）
 
-### 1. 取得してビルドする
+Node.js や Git が入っていない場合は、それぞれの公式サイトのインストーラーか、次のコマンドで入れられます。入れたあとは、ターミナルを開き直してください。
+
+| OS | Node.js | Git |
+|---|---|---|
+| Windows | `winget install OpenJS.NodeJS.LTS` | `winget install Git.Git` |
+| macOS（[Homebrew](https://brew.sh/)） | `brew install node` | `brew install git` |
+
+### 導入のしかたを選ぶ
+
+> **自分で手順を進めなくても、AIに任せられます。**
+> パソコン上でコマンドを実行できるAIにこのREADMEを読ませれば、Node.js のインストールから登録までをAIが行います。頼み方は、すぐ下の「[AIに導入を任せる](#aiに導入を任せる)」にあります。
+
+| 方法 | どうなるか | 向いている場合 |
+|---|---|---|
+| [AIに導入を任せる](#aiに導入を任せる) | AIがこのREADMEに従って、方法Aで導入する | 手順を自分で進めたくない |
+| [方法A：クローンして使う](#方法aクローンして使う) | パソコンのフォルダーに取得してビルドする。更新は自分で行う | 確実に動かしたい。中身を見たい・直したい |
+| [方法B：クローンせずに使う（npx）](#方法bクローンせずに使うnpx) | 設定を書くだけ。起動のたびに最新版を確認して自動で更新する | 手軽に試したい |
+
+方法Aと方法Bは、**どちらか一方**を選びます。「更新する」「やめる」の手順は方法ごとに違うので、それぞれの中に書いてあります。
+
+### AIに導入を任せる
+
+パソコン上でコマンドを実行できるAI（Claudeデスクトップ版のCodeモードで「このコンピューター」を選んだ会話、Claude Code など）に、次のように頼みます。Node.js や Git が入っていなくても構いません。
+
+```
+次のMCPサーバーを、このパソコンのClaudeデスクトップアプリで使えるように導入してください。
+https://github.com/hellboy84/hanreikensaku-mcp
+
+READMEの「AIに導入を任せる」に従ってください。
+Node.js や Git など必要なものが入っていなければ、何を入れるのかを説明したうえでインストールしてください。
+```
+
+途中で、ソフトのインストールやファイルの書き換えについて許可を求められます。内容を確かめて許可してください。終わったら、AIの案内に従ってAIアシスタントを起動し直します。
+
+#### 導入を行うAIへ
+
+次の順に進めてください。
+
+1. **環境を確かめる。** OS、`node --version`（22以上が必要）、`git --version`。足りないものは、何を入れるのかを利用者に伝えてから入れる（上の「必要なもの」の表）。入れた直後は、いまのシェルにPATHが反映されていないことがある。新しいシェルを開くか、フルパスで実行する
+2. **方法Aの「A-1. 取得してビルドする」を行う。** 置き場所は、利用者のホームフォルダーの直下にする（例：`C:\Users\名前\hanreikensaku-mcp`）。終わったら `dist/local.js` ができたことを確かめる。WindowsのPowerShellで `npm` がスクリプトの実行ポリシーにより止められた場合は、`npm.cmd` を使う
+3. **起動を確かめる。** `node dist/local.js` を実行し、`hanreikensaku-mcp: 起動しました（stdio）` と表示されることを確かめる。待ち受けの状態になり自分では終了しないので、表示を確かめたら止める
+4. **登録先を間違えない。** Claudeデスクトップ版のチャットで使えるようにするには、設定ファイル `claude_desktop_config.json` に書く。`claude mcp add` は Claude Code 用の登録で、デスクトップ版のチャットには反映されない
+5. **フルパスで書く。** `command` には `node` のフルパス、`args` には `dist/local.js` のフルパスを書く。相対パスや `~` は使わない。Windowsでは、JSONの中の `\` を `\\` と書く
+6. **設定ファイルを上書きしない。** 既存の内容を読み、`mcpServers` に `hanrei` を足す。書き換える前に控えを取り、書いたあとJSONとして正しいことを確かめる
+7. **Windowsでは、設定ファイルの場所を2か所とも確かめる。** 「A-3」の「Claudeデスクトップ版」にある注意を参照
+8. **最後に、利用者に次のことを伝える。** AIアシスタントを完全に終了して起動し直す必要があること（その方法も）。新しいチャットで「安全配慮義務に関する最近の裁判例を探して」のように頼めば確かめられること。どこに置いたか
+9. **うまくいかないときは、無理に進めない。** 何が起きたかを利用者に伝える
+
+### 方法A：クローンして使う
+
+#### A-1. 取得してビルドする
 
 置きたい場所で、次の3つを順に実行します。
 
@@ -50,7 +100,7 @@ npm install
 
 `npm install` の中でビルドも行われ、`dist/local.js` ができます。これがサーバーの本体です。
 
-### 2. 起動できるか確かめる
+#### A-2. 起動できるか確かめる
 
 ```bash
 node dist/local.js
@@ -58,7 +108,7 @@ node dist/local.js
 
 `hanreikensaku-mcp: 起動しました（stdio）` と表示されれば成功です。そのまま待ち受けの状態になるので、Ctrl+C で止めてください。
 
-### 3. AIアシスタントに登録する
+#### A-3. AIアシスタントに登録する
 
 登録には、次の2つの**フルパス**が必要です。
 
@@ -67,7 +117,7 @@ node dist/local.js
 | `node` の場所 | macOS・Linux：`which node`、Windows：`where node` | `/usr/local/bin/node` |
 | `dist/local.js` の場所 | `hanreikensaku-mcp` のフォルダで `pwd`（Windowsは `cd`）を実行し、後ろに `/dist/local.js` を付ける | `/Users/you/hanreikensaku-mcp/dist/local.js` |
 
-#### Claudeデスクトップ版
+**Claudeデスクトップ版**
 
 設定ファイル `claude_desktop_config.json` に書き足します。Claudeデスクトップ版の「設定」→「開発者」→「設定を編集（Edit Config）」で、このファイルの場所が開きます。
 
@@ -90,23 +140,52 @@ node dist/local.js
 - `command` と `args` は、上で調べたフルパスに置き換えます
 - すでに `mcpServers` がある場合は、その中に `"hanrei": { … }` を足します（ほかの設定は消さないでください）
 - Windowsでは、パスの `\` を `\\` と書きます（例：`"C:\\Users\\you\\hanreikensaku-mcp\\dist\\local.js"`）
-- 書いたあと、Claudeデスクトップ版を完全に終了して起動し直します
+- 書いたあと、Claudeデスクトップ版を**完全に終了して**起動し直します。ウィンドウを閉じるだけでは終了しません。Windowsは画面右下の通知領域にあるClaudeのアイコンを右クリックして終了、macOSは Cmd+Q です
+- **Windowsでの注意**：Microsoft Store から入れたClaudeデスクトップ版は、上の場所ではなく `%LOCALAPPDATA%\Packages\Claude_…\LocalCache\Roaming\Claude\claude_desktop_config.json`（`Claude_` で始まるフォルダーの中）を読んでいることがある、と報告されています。書いたのにツールが出てこないときは、こちらにも同じ内容を書いてください
 
-#### Claude Code
+**Claude Code**
 
 ```bash
 claude mcp add hanrei -- node /Users/you/hanreikensaku-mcp/dist/local.js
 ```
 
-パスは自分の環境のものに置き換えます。登録できたかは `claude mcp list` で確認できます。
+パスは自分の環境のものに置き換えます。登録できたかは `claude mcp list` で確認できます。これは Claude Code 用の登録で、Claudeデスクトップ版のチャットには反映されません。
 
-#### そのほかのMCPクライアント
+**そのほかのMCPクライアント**
 
 stdio（標準入出力）で動くMCPサーバーです。起動コマンドに `node`、引数に `dist/local.js` のフルパスを指定してください。
 
-### クローンせずに使う（npx）
+#### 更新する（方法A）
 
-`npx` でGitHubから直接起動することもできます。手順は少なくなりますが、初回の起動に時間がかかり（取得とビルドを行うため）、更新がすぐには反映されないことがあります。確実なのは上の方法です。
+自動では更新されません。`hanreikensaku-mcp` のフォルダで次の2つを順に実行し、AIアシスタントを起動し直します。
+
+```bash
+git pull
+```
+
+```bash
+npm install
+```
+
+#### やめる（方法A）
+
+1. 設定ファイルから `"hanrei"` の項目を消す（Claude Code は `claude mcp remove hanrei`）
+2. `hanreikensaku-mcp` のフォルダを消す
+3. キャッシュのフォルダ `~/.cache/hanreikensaku-mcp`（Windowsは `C:\Users\名前\.cache\hanreikensaku-mcp`）を消す
+
+### 方法B：クローンせずに使う（npx）
+
+フォルダーを自分で用意せず、設定を書くだけで使う方法です。AIアシスタントがこのサーバーを起動するたびに、`npx` がGitHubで最新版を確認し、初回と更新があったときは取得とビルドを行います。
+
+方法Aとの違い：
+
+- 起動のたびにインターネット接続が必要です。初回と更新があったときは、起動に少し時間がかかります
+- いつも最新版になります。更新の時期を自分で決めることはできません
+- Node.js と Git が必要な点は同じです
+
+**Claudeデスクトップ版**
+
+設定ファイルの場所と書き方の注意は、方法Aの「A-3」と同じです。
 
 ```json
 {
@@ -119,33 +198,24 @@ stdio（標準入出力）で動くMCPサーバーです。起動コマンドに
 }
 ```
 
-### 更新する
+Windowsでは、この書き方で起動しないことがあります。その場合は `"command": "cmd"`、`"args": ["/c", "npx", "-y", "github:hellboy84/hanreikensaku-mcp"]` としてください。それでも動かなければ、方法Aを使ってください。
 
-`hanreikensaku-mcp` のフォルダで、次の2つを順に実行し、AIアシスタントを起動し直します。
-
-```bash
-git pull
-```
+**Claude Code**
 
 ```bash
-npm install
+claude mcp add hanrei -- npx -y github:hellboy84/hanreikensaku-mcp
 ```
 
-### やめる
+#### 更新する（方法B）
+
+何もしなくて構いません。AIアシスタントを起動し直せば、最新版になります。
+
+#### やめる（方法B）
 
 1. 設定ファイルから `"hanrei"` の項目を消す（Claude Code は `claude mcp remove hanrei`）
-2. `hanreikensaku-mcp` のフォルダを消す
-3. キャッシュのフォルダ `~/.cache/hanreikensaku-mcp` を消す
+2. キャッシュのフォルダ `~/.cache/hanreikensaku-mcp`（Windowsは `C:\Users\名前\.cache\hanreikensaku-mcp`）を消す
 
-### AIに導入を任せる場合
-
-AIアシスタント（コーディングエージェントなど）にこのREADMEを渡して導入させるときは、次の点を守らせてください。
-
-1. `node --version` が 22 以上であることを確かめる。満たさなければ、そこで止めて利用者に伝える
-2. 「1. 取得してビルドする」の3つのコマンドを実行し、`dist/local.js` ができたことを確かめる
-3. 設定には `node` と `dist/local.js` の**フルパス**を書く（相対パスや `~` は使わない）
-4. 設定ファイルは上書きしない。既存の内容を読み、`mcpServers` に `hanrei` を足す。書き換える前に控えを取る
-5. 終わったら、AIアシスタントを起動し直す必要があることを利用者に伝える
+`npx` が取得したプログラムは npm のキャッシュの中に残りますが、そのままにしておいて差し支えありません。
 
 ## ツールの使い方
 
@@ -244,10 +314,12 @@ Claudeデスクトップ版では、設定ファイルの `"hanrei"` の中に `
 | 症状 | 確かめること |
 |---|---|
 | AIアシスタントにツールが出てこない | 設定ファイルのJSONが正しいか（カンマや括弧）。パスがフルパスか。AIアシスタントを完全に終了して起動し直したか |
+| Windowsで、設定を書いたのにツールが出てこない | Microsoft Store 版は、別の場所の設定ファイルを読んでいることがあります（方法Aの「A-3」にある注意） |
+| 方法B（npx）で起動しない | Windowsでは `cmd` を使う書き方を試す（方法Bの説明）。インターネットにつながっているか。だめなら方法Aを使う |
 | `node` が見つからないと言われる | `command` を `node` のフルパスにする |
 | `dist/local.js` がない | `hanreikensaku-mcp` のフォルダで `npm install` を実行する |
 | 検索がエラーになる（2000件を超えました） | 上の「全文検索には2,000件の上限があります」を参照 |
-| 以前は動いていたのに、検索や取得が失敗する | 裁判所サイトの構成が変わった可能性があります。「更新する」を試し、直らなければIssueでお知らせください |
+| 以前は動いていたのに、検索や取得が失敗する | 裁判所サイトの構成が変わった可能性があります。方法Aなら「更新する（方法A）」を試し、直らなければIssueでお知らせください |
 
 ## 開発
 
@@ -284,7 +356,7 @@ npm run test:live
 
 本物の裁判所サイトから数件だけ取得して、解析できるかを確かめます。GitHub Actionsで週1回動かし、サイトの構成が変わって壊れたら気づけるようにしています。
 
-開発とテストは Linux（Node.js 22）で行っています。
+開発とテストは Linux（Node.js 22）で行っています。WindowsとmacOSでの動作は、作者の側では確認できていません。動いた・動かなかったの報告を歓迎します。
 
 ## 背景と今後
 
