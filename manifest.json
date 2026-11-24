@@ -1,0 +1,49 @@
+{
+  "manifest_version": "0.2",
+  "name": "hanreikensaku-mcp",
+  "display_name": "裁判例検索（hanreikensaku-mcp）",
+  "version": "0.1.0",
+  "description": "裁判所ウェブサイトの「裁判例検索」を検索し、判決の全文をPDFから取り出して読めるようにします（非公式）。",
+  "long_description": "裁判所ウェブサイトの「裁判例検索」（https://www.courts.go.jp/hanrei/search1/index.html）を、キーワード・事件番号・裁判年月日・裁判所名などで検索できます。判決の全文はPDFでしか公開されていませんが、PDFから文字を取り出し、読みやすく整えて返します。\n\n自分のパソコンの中で動きます。アカウントの登録やAPIキーは要りません。検索するたびに、このパソコンから裁判所サイトにアクセスします（1件ずつ、間隔を空けて行い、取得したものは手元にキャッシュします）。\n\n裁判所とは関係のない、個人が作った非公式のツールです。取得した内容の正確さは保証しません。実務で使うときは、必ず原文で確認してください。",
+  "author": {
+    "name": "S.HASHIMOTO",
+    "url": "https://github.com/hellboy84"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hellboy84/hanreikensaku-mcp"
+  },
+  "homepage": "https://github.com/hellboy84/hanreikensaku-mcp",
+  "documentation": "https://github.com/hellboy84/hanreikensaku-mcp#readme",
+  "support": "https://github.com/hellboy84/hanreikensaku-mcp/issues",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/local.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/local.js"]
+    }
+  },
+  "tools": [
+    {
+      "name": "search_cases",
+      "description": "裁判例を検索し、一覧（ID、事件番号、事件名、裁判年月日、裁判所など）を返す"
+    },
+    {
+      "name": "get_case",
+      "description": "裁判例1件の詳細（結果、原審、判示事項、裁判要旨、参照法条など）と全文PDFのURLを返す"
+    },
+    {
+      "name": "get_full_text",
+      "description": "裁判例1件の本文を、全文PDFから取り出して返す"
+    }
+  ],
+  "keywords": ["裁判例", "判例", "判決", "法律", "courts", "japan", "case-law"],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=22.0.0"
+    }
+  }
+}
