@@ -1,0 +1,59 @@
+# タグ（v0.1.0 など）を打つと、Claudeデスクトップ版向けの配布ファイル（.mcpb）を作り、Releases に添付する。
+# 手動で実行したとき（workflow_dispatch）は、作るだけで Releases には出さない（Artifacts から取得できる）。
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mcpb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write # Releases に添付するため
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+      - name: タグと version が合っているか確かめる
+        if: github.ref_type == 'tag'
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+            echo "::error::タグ（$GITHUB_REF_NAME）と package.json の version（$version）が合っていません"
+            exit 1
+          fi
+
+      - name: .mcpb を作る
+        run: npm run pack:mcpb
+      - name: 作った .mcpb が単体で動くか確かめる
+        run: npm run smoke:mcpb
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hanreikensaku-mcp.mcpb
+          path: build/hanreikensaku-mcp.mcpb
+          if-no-files-found: error
+
+      - name: Releases に添付する
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" build/hanreikensaku-mcp.mcpb --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" build/hanreikensaku-mcp.mcpb --title "$GITHUB_REF_NAME" --generate-notes
+          fi

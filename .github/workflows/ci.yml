@@ -19,3 +19,6 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
+      # Claudeデスクトップ版向けの配布ファイル（.mcpb）を作れて、単体で動くことも確かめる
+      - run: npm run pack:mcpb
+      - run: npm run smoke:mcpb
