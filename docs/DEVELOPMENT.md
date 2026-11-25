@@ -64,7 +64,3 @@ npm run smoke:mcpb
 3. GitHub Actions（`.github/workflows/release.yml`）が .mcpb を作り、[Releases](https://github.com/hellboy84/hanreikensaku-mcp/releases) に添付する
 
 方法B（npx）の利用者には、main に入った時点で変更が届きます。.mcpb の利用者には、Releases から新しいファイルを取得して入れ直してもらう必要があります。
-
-## 動作を確かめている環境
-
-開発とテストは Linux（Node.js 22）で行っています。WindowsとmacOSでの動作は、作者の側では確認できていません。動いた・動かなかったの報告を歓迎します。
