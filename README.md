@@ -10,7 +10,7 @@
 
 裁判所とは関係のない、個人が作った非公式のツールです。
 
-> **Claudeデスクトップ版なら、[.mcpb ファイル](https://github.com/hellboy84/hanreikensaku-mcp/releases/latest/download/hanreikensaku-mcp.mcpb)をダウンロードして開くだけで使えます。** Node.js のインストールも、設定ファイルの書き換えも要りません。手順は「[導入](#導入)」にあります。
+> **Claudeデスクトップ版なら、[.mcpb ファイル](https://github.com/hellboy84/hanreikensaku-mcp/releases/latest/download/hanreikensaku-mcp.mcpb)をダウンロードして開くだけで使えます。** Node.js のインストールも、設定ファイルの書き換えも要りません。手順は [docs/INSTALL.md](docs/INSTALL.md#claudeデスクトップ版mcpb-ファイルを入れる) にあります。
 
 ## できること
 
@@ -28,61 +28,15 @@ AIアシスタントには、たとえば次のように頼めます。
 
 ## 導入
 
-### 導入のしかたを選ぶ
-
-使っているAIアシスタントによって、導入のしかたが違います。
+使っているAIアシスタントによって、導入のしかたが違います。手順は **[docs/INSTALL.md](docs/INSTALL.md)** にあります。
 
 | 使っているAIアシスタント | 導入のしかた | 必要なもの |
 |---|---|---|
-| **Claudeデスクトップ版** | [.mcpb ファイルを入れる](#claudeデスクトップ版mcpb-ファイルを入れる)（いちばん簡単） | なし |
+| **Claudeデスクトップ版** | [.mcpb ファイルを入れる](docs/INSTALL.md#claudeデスクトップ版mcpb-ファイルを入れる)（ダウンロードして開くだけ。いちばん簡単） | なし |
 | Claude Code、Codex など、そのほかのMCPクライアント | [方法A：クローンして使う](docs/INSTALL.md#方法aクローンして使う) か [方法B：クローンせずに使う（npx）](docs/INSTALL.md#方法bクローンせずに使うnpx) | Node.js と Git |
 
-- .mcpb・方法A・方法Bは、**どれか1つ**を選びます。「更新する」「やめる」の手順は方法ごとに違うので、それぞれの中に書いてあります
-- Claudeデスクトップ版でも、方法A・Bは使えます（中身を見たい・直したい場合や、.mcpb を入れられない場合）
-- **すでに方法A・Bで使っている方は、何もしなくて構いません。** これまでどおり動きます。.mcpb に切り替えたい場合は、[docs/INSTALL.md の「方法AまたはBから .mcpb に切り替える」](docs/INSTALL.md#方法aまたはbから-mcpb-に切り替える)を見てください
-
-### Claudeデスクトップ版：.mcpb ファイルを入れる
-
-.mcpb は、MCPサーバーを1つのファイルにまとめた、Claudeデスクトップ版の「拡張機能」の形式です。必要なものはすべてファイルの中に入っているので、Node.js や Git を入れたり、設定ファイルを書き換えたりする必要はありません。Windows でも macOS でも、同じファイルを使います。
-
-1. **ダウンロードする。** [hanreikensaku-mcp.mcpb](https://github.com/hellboy84/hanreikensaku-mcp/releases/latest/download/hanreikensaku-mcp.mcpb) をダウンロードします（[Releases](https://github.com/hellboy84/hanreikensaku-mcp/releases/latest) のページにある、最新版のファイルです）
-2. **開く。** ダウンロードしたファイルをダブルクリックします。Claudeデスクトップ版が開き、インストールの確認が表示されます。開かないときは、Claudeデスクトップ版の「設定」→「拡張機能」を開き、その画面にファイルをドラッグ＆ドロップします
-3. **インストールする。** 表示された内容（名前、説明、ツールの一覧）を確かめて、「インストール」を押します
-4. **試す。** 新しいチャットで「安全配慮義務に関する最近の裁判例を探して」のように頼みます。ツールを使ってよいか尋ねられたら、許可します
-
-知っておくこと：
-
-- **インストールのとき、注意が表示されることがあります。** このファイルには開発元の署名を付けていないので、開発元を確認できないという趣旨の注意が出ることがあります。上のリンク（このリポジトリの Releases）から取得したファイルであることを確かめたうえで、進めてください
-- **会社や事務所のアカウントでは、入れられないことがあります。** Team・Enterprise プランでは、管理者が拡張機能の追加を制限している場合があります。そのときは管理者に相談するか、[方法A](docs/INSTALL.md#方法aクローンして使う)を使ってください
-- **Claudeデスクトップ版に入っている Node.js で動きます。** Node.js 22 以上が必要で、Claudeデスクトップ版が古いと動かないことがあります。まずClaudeデスクトップ版を最新にしてください（「[うまくいかないとき](#うまくいかないとき)」も参照）
-- **「[設定](#設定)」の環境変数は、.mcpb では変えられません。** 既定のまま動きます。変えたい場合は、[方法A](docs/INSTALL.md#方法aクローンして使う)を使ってください
-
-#### 更新する（.mcpb）
-
-自動では更新されません。新しい版が出たら、上の手順と同じように、新しい .mcpb をダウンロードして開きます。古いものと入れ替わります。取得済みの裁判例のキャッシュは、そのまま引き継がれます。
-
-いま入っている版は、Claudeデスクトップ版の「設定」→「拡張機能」で確かめられます。新しい版が出ているかは、[Releases](https://github.com/hellboy84/hanreikensaku-mcp/releases) で確かめられます。
-
-#### やめる（.mcpb）
-
-1. Claudeデスクトップ版の「設定」→「拡張機能」で、「裁判例検索（hanreikensaku-mcp）」をアンインストールする
-2. キャッシュのフォルダ `~/.cache/hanreikensaku-mcp`（Windowsは `C:\Users\名前\.cache\hanreikensaku-mcp`）を消す
-
-### そのほかの導入のしかた（方法A・方法B）
-
-Claude Code、Codex など、Claudeデスクトップ版以外のMCPクライアントで使う場合や、中身を見たい・直したい場合は、Node.js を使って導入します。必要なものは [Node.js](https://nodejs.org/) 22 以上と [Git](https://git-scm.com/) です。手順は **[docs/INSTALL.md](docs/INSTALL.md)** にまとめてあります。
-
-| 方法 | どうなるか | 向いている場合 |
-|---|---|---|
-| [方法A：クローンして使う](docs/INSTALL.md#方法aクローンして使う) | パソコンのフォルダーに取得してビルドする。更新は自分で行う | 確実に動かしたい。中身を見たい・直したい |
-| [方法B：クローンせずに使う（npx）](docs/INSTALL.md#方法bクローンせずに使うnpx) | 設定を書くだけ。起動のたびに最新版を確認して自動で更新する | 手軽に試したい |
-| [AIに導入を任せる](docs/INSTALL.md#aiに導入を任せる) | AIが手順に従って、方法Aで導入する | 方法Aの手順を自分で進めたくない |
-
-### AIに導入を任せる
-
-方法Aの手順（Node.js のインストールから登録まで）は、パソコン上でコマンドを実行できるAIに任せられます。頼み方は、[docs/INSTALL.md の「AIに導入を任せる」](docs/INSTALL.md#aiに導入を任せる)にあります。
-
-**導入を行うAIへ：** 手順は [docs/INSTALL.md の「導入を行うAIへ」](docs/INSTALL.md#導入を行うaiへ) にあります。そちらに従ってください。
+- 方法Aの手順は、AIに任せることもできます（[AIに導入を任せる](docs/INSTALL.md#aiに導入を任せる)）。導入を行うAIは、[docs/INSTALL.md の「導入を行うAIへ」](docs/INSTALL.md#導入を行うaiへ)に従ってください
+- すでに方法A・Bで使っている方は、何もしなくて構いません。これまでどおり動きます
 
 ## ツールの使い方
 
@@ -175,79 +129,15 @@ AIアシスタントが自分で引数を組み立てるので、利用者が覚
 | `HANREI_MIN_INTERVAL_MS` | 裁判所サイトへのアクセス間隔（ミリ秒。1000未満にはできません） | `3000` |
 
 方法A・Bで登録したClaudeデスクトップ版では、設定ファイルの `"hanrei"` の中に `"env": { "HANREI_CACHE_DIR": "/path/to/cache" }` のように書きます。.mcpb で入れた場合は変えられません（既定のまま動きます）。
+
 ## うまくいかないとき
 
 | 症状 | 確かめること |
 |---|---|
-| .mcpb をダブルクリックしても、Claudeデスクトップ版で開かない | Claudeデスクトップ版の「設定」→「拡張機能」を開き、その画面にファイルをドラッグ＆ドロップする。Claudeデスクトップ版が古い場合は、最新にする |
-| .mcpb をインストールできない（許可されていない、などと表示される） | Team・Enterprise プランでは、管理者が拡張機能の追加を制限していることがあります。管理者に相談するか、方法Aを使う |
-| .mcpb を入れたのに、ツールが出てこない・エラーになる | Claudeデスクトップ版を最新にする（中に入っている Node.js が22より古いと動きません）。直らなければ、パソコンに Node.js 22 以上を入れたうえで、「設定」→「拡張機能」の詳細設定にある、Claudeデスクトップ版に内蔵の Node.js を使うかどうかの項目を切り替えてみる。それでも動かなければ、方法Aを使う |
-| 同じツールが2組ずつ表示される | .mcpb と、設定ファイルの `"hanrei"`（方法A・B）の両方が入っています。どちらかを消す（[docs/INSTALL.md の「方法AまたはBから .mcpb に切り替える」](docs/INSTALL.md#方法aまたはbから-mcpb-に切り替える)） |
 | 検索がエラーになる（2000件を超えました） | 上の「全文検索には2,000件の上限があります」を参照 |
-| 以前は動いていたのに、検索や取得が失敗する | 裁判所サイトの構成が変わった可能性があります。.mcpb なら「更新する（.mcpb）」、方法Aなら [docs/INSTALL.md](docs/INSTALL.md#更新する方法a) の「更新する（方法A）」を試し、直らなければIssueでお知らせください |
+| 以前は動いていたのに、検索や取得が失敗する | 裁判所サイトの構成が変わった可能性があります。更新を試し（[.mcpb の場合](docs/INSTALL.md#更新するmcpb)、[方法Aの場合](docs/INSTALL.md#更新する方法a)）、直らなければIssueでお知らせください |
 
-方法A・Bでの導入でつまずいたときは、[docs/INSTALL.md の「うまくいかないとき」](docs/INSTALL.md#うまくいかないとき)を見てください。
-
-## 開発
-
-```
-src/
-  core/               検索・詳細ページ解析・PDF処理・ツール定義
-    site.ts             URLと区分の定義
-    search.ts           検索条件の組み立てと、検索結果ページの解析
-    detail.ts           詳細ページの解析
-    pdf.ts              PDFから行を取り出す
-    text.ts             行をつないで段落にし、見出しで区切る
-    http.ts             間隔を空けたアクセス
-    service.ts          取得とキャッシュの組み合わせ
-    tools.ts            MCPツールの定義
-  storage/            キャッシュの窓口（ファイル、メモリ）
-  local-service.ts    ローカル用の組み立て（キャッシュの場所、環境変数）
-  local.ts            stdioで起動
-assets/cmaps/         古いPDFの文字を取り出すための日本語CMap
-manifest.json         .mcpb（Claudeデスクトップ版向けの配布ファイル）の説明書き
-scripts/              .mcpb を作る・確かめるためのスクリプト
-tests/
-  fixtures/           裁判所サイトのHTMLの抜粋と、判決のPDF
-```
-
-裁判所サイトの構成が変わったときに直すのは、`src/core/` の `site.ts`・`search.ts`・`detail.ts` です。
-
-```bash
-npm test
-```
-
-保存したデータ（`tests/fixtures/`）を使った解析のテストです。裁判所サイトにはアクセスしません。
-
-```bash
-npm run test:live
-```
-
-本物の裁判所サイトから数件だけ取得して、解析できるかを確かめます。GitHub Actionsで週1回動かし、サイトの構成が変わって壊れたら気づけるようにしています。
-
-### .mcpb を作る
-
-```bash
-npm run pack:mcpb
-```
-
-`build/hanreikensaku-mcp.mcpb` ができます。実行に必要なもの（`manifest.json`、`dist/`、`assets/`、実行時の依存だけの `node_modules/`）を `build/mcpb/` に集め、[mcpb](https://github.com/modelcontextprotocol/mcpb) で1つのファイルにまとめています。
-
-```bash
-npm run smoke:mcpb
-```
-
-作った .mcpb を展開し、中身だけで起動できること、同梱のCMapでPDFから文字を取り出せることを確かめます。裁判所サイトにはアクセスしません。
-
-### 新しい版を出す
-
-1. `package.json`・`manifest.json`・`src/core/tools.ts`（`SERVER_VERSION`）の版を、同じ番号に上げる（そろっていないと `npm test` が失敗します）
-2. main に入れたあと、`v` を付けたタグ（例：`v0.2.0`）を打ってプッシュする
-3. GitHub Actions（`.github/workflows/release.yml`）が .mcpb を作り、[Releases](https://github.com/hellboy84/hanreikensaku-mcp/releases) に添付する
-
-方法B（npx）の利用者には、main に入った時点で変更が届きます。.mcpb の利用者には、Releases から新しいファイルを取得して入れ直してもらう必要があります。
-
-開発とテストは Linux（Node.js 22）で行っています。WindowsとmacOSでの動作は、作者の側では確認できていません。動いた・動かなかったの報告を歓迎します。
+導入でつまずいたとき（ツールが出てこない、インストールできない など）は、[docs/INSTALL.md の「うまくいかないとき」](docs/INSTALL.md#うまくいかないとき)を見てください。
 
 ## 背景と今後
 
@@ -259,11 +149,14 @@ npm run smoke:mcpb
 - 添付文書PDFの本文化、表・別紙の整形
 - 自分のパソコンに入れなくても使える形（リモートMCP）
 
+プログラムの構成、テストのしかた、新しい版の出し方は、[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) にあります（開発者向け）。
+
 ## 免責
 
 - 裁判所とは関係のない非公式のツールです。裁判所サイトの構成が変わると、動かなくなることがあります
 - 取得した内容の正確さ・完全さは保証しません。実務で使うときは、必ず原文（裁判所サイトのPDF、判例集など）で確認してください
 - このツールは情報の取得を助けるもので、法的な助言をするものではありません
+- 開発とテストは Linux で行っています。Windows と macOS での動作は、作者の側では確認できていません。動いた・動かなかったの報告を歓迎します
 
 ## ライセンス
 
