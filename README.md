@@ -1,4 +1,4 @@
-# hanreikensaku-mcp
+# hanreikensaku-mcp（判例検索MCP，裁判例検索MCP）
 
 裁判所ウェブサイトの「[裁判例検索](https://www.courts.go.jp/hanrei/search1/index.html)」を、ClaudeなどのAIアシスタントから検索・取得できるようにするMCPサーバーです。
 
